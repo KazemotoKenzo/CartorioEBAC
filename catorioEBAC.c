@@ -122,9 +122,13 @@ int deletar(){								// funcao deletar nomes
     }
 }
 
-char obterResposta(int valor) {				//função para manter ou terminar loop
+char obterResposta(int valor){				//função para manter ou terminar loop
     char resposta;
     	switch(valor){													//define qual função perguntar
+		case 0:
+    	printf("\nDeseja retornar ao menu? (s/n): ");					//retorno de menu
+		break;
+		
 		case 1:
     	printf("\nDeseja continuar registrando? (s/n): ");				//pergunta do registro
 		break;
@@ -138,7 +142,7 @@ char obterResposta(int valor) {				//função para manter ou terminar loop
 		break;
 		
 		case 4:
-    	printf("\nDeseja retornar ao menu? (s/n): ");					//retorno de menu
+		printf("\nTem certeza que deseja sair encerrar o programa? (s/n): ");
 		break;
 	}
     scanf(" %c", &resposta);
@@ -161,6 +165,7 @@ int main(){
 		printf("\t1 - Registrar nomes\n");            
 		printf("\t2 - Consultar nomes\n");
 		printf("\t3 - Deletar nomes\n\n");
+		printf("\t4 - Sair do sistema\n\n");
 		printf("Opção: ");
 	
 		scanf("%d", &opcao);                           // Scanear variavel
@@ -187,13 +192,20 @@ int main(){
 				resposta = obterResposta(3);
             } while (resposta != 'n' && resposta != 'N');
             break;
-
+            
+            case 4:
+            resposta = obterResposta(4);
+            if(resposta == 's' || resposta == 'S'){
+            	return 0;
+            }
+            break;
+            
             default:														//opcao indisponivel
             printf("Opção indisponível\n");
             system("pause");
             break;
         }
         system("cls");
-		resposta = obterResposta(4);
+		resposta = obterResposta(0);
     } while (resposta != 'n' && resposta != 'N');							//retornar menu
 }
