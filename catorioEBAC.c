@@ -3,7 +3,7 @@
 #include <locale.h>	//biblioteca de alocação de texto por região
 #include <string.h>	//biblioteca de string
 
-void virgula(char arquivo[]){				//função para adicionar uma virgula no registro
+void virgula(char arquivo[]){				//informações para adicionar uma virgula no registro
 	FILE *file;
 	file = fopen(arquivo, "a");
 	fprintf(file, ", ");
@@ -57,6 +57,7 @@ int registro(){								// funcao registro de nomes
 	file = fopen(arquivo, "a");
 	fprintf(file, cargo);
 	fclose(file);
+	return 0;
 	// coletar informações usuario - Final
 }
 
@@ -78,11 +79,12 @@ int consulta(){								// funcao consultar nomes
 		printf("Arquivo não localizado.\n");
 	}
 	while(fgets(conteudo,200,file) != NULL){	//mostra as informações
-		printf("\nEssas são as informações do usuário: ");
+		printf("\nEssas são as informarmações do usuário: ");
 		printf("%s", conteudo);
 		printf("\n\n");
 	}
 	fclose(file);
+	return 0;
 }
 
 int deletar(){								// funcao deletar nomes
@@ -120,6 +122,7 @@ int deletar(){								// funcao deletar nomes
             }
         }
     }
+	return 0;
 }
 
 char obterResposta(int valor){				//função para manter ou terminar loop
@@ -154,8 +157,15 @@ int main(){
 	//variaveis
 	int opcao = 0;
 	char resposta;
-	//Final variaveis
+	char senha[10] = "a";
+	int comp;
 	
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Login Administrador\n\nDigite sua senha: ");
+	scanf("%s", senha);
+	
+	comp = strcmp(senha, "admnin");
+	if(strcmp(senha, "admnin") == 0){
 	do {
         system("cls");
 		setlocale(LC_ALL, "Portuguese");               // Definir a linguagem
@@ -208,4 +218,14 @@ int main(){
         system("cls");
 		resposta = obterResposta(0);
     } while (resposta != 'n' && resposta != 'N');							//retornar menu
+	}
+	
+	//Final variaveis
+	else{
+		printf("senha errada.");
+	}
+	
+	
+	
+	
 }
